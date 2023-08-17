@@ -1,5 +1,6 @@
 export interface Apartment {
-    Address: string;
-    Floor: string;
-    DoorNumber: string;
+    id: string;
+    address: string;
+    floor: string;
+    doorNumber: string;
 }
