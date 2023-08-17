@@ -1,3 +1,4 @@
+import { Apartment } from "models/apartment/apartment.interface";
 import prismaClient from "../../prisma/prisma";
 
 export const getApartments = () => {
@@ -9,5 +10,11 @@ export const getApartment = (apartmentId: string) => {
         where: {
             id: apartmentId
         }
+    });
+}
+
+export const insertApartment = async (aparments: Apartment[]) => {
+    return await prismaClient.apartment.createMany({
+        data: aparments
     });
 }
