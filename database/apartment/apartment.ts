@@ -1,4 +1,4 @@
-import { Apartment } from "models/apartment/apartment.interface";
+import { Apartment } from "~/models/apartment/apartment.interface";
 import prismaClient from "../../prisma/prisma";
 
 export const getApartments = () => {
