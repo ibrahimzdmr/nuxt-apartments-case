@@ -3,4 +3,5 @@ export interface Apartment {
     address: string;
     floor: string;
     doorNumber: string;
+    photo: string;
 }

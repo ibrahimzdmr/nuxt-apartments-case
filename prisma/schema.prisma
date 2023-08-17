@@ -13,8 +13,21 @@ datasource db {
 }
 
 model Apartment {
-    id  String  @id @unique @default(cuid())
+    id  String  @id @default(cuid())
     address String
     floor String
     doorNumber String
+    photo String
+}
+
+model Inventory {
+    id  String  @id @default(cuid())
+    apartmentId String @unique
+}
+
+model InventoryItem {
+  id  String  @id @default(cuid())
+  inventoryId String
+  itemId Int
+  quantity Int
 }

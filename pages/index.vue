@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { apartmentArrayValidationSchema } from '~/validations/apartment.validation';
 import { Apartment } from '~/models/apartment/apartment.interface'
+
+const asd = useApartmentStore();
+
 const qweqw = async () => {
-    const z = {
+    /*const z = {
         address: 'Address34',
         doorNumber: 'DoorNumber34',
         floor: 'Floor34',
@@ -12,7 +14,8 @@ const qweqw = async () => {
         method: 'PUT',
         body: z
     });
-    console.log(error);
+    console.log(error);*/
+    console.log(asd.state);
 }
 </script>
 <template>
