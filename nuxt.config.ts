@@ -15,4 +15,12 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
+  imports: {
+    dirs: [
+      'composables',
+      'composables/*/index.{ts,js,mjs,mts}',
+      'composables/**',
+      'pages/**'
+    ]
+  },
 })
