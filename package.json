@@ -20,12 +20,15 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "^5.1.1",
+    "@vee-validate/zod": "^4.11.1",
     "@vercel/postgres": "^0.4.1",
     "daisyui": "^3.5.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "pinia": "^2.1.6",
     "prisma": "^5.1.1",
-    "tailwind": "^4.0.0"
+    "tailwind": "^4.0.0",
+    "vee-validate": "^4.11.1",
+    "zod": "^3.22.1"
   }
 }

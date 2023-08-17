@@ -18,3 +18,24 @@ export const insertApartment = async (aparments: Apartment[]) => {
         data: aparments
     });
 }
+
+export const deleteApartment = async (apartmentId: string) => {
+    return await prismaClient.apartment.delete({
+        where: {
+            id: apartmentId
+        }
+    });
+}
+
+export const updateApartment = async (apartment: Apartment) => {
+    return await prismaClient.apartment.update({
+        where: {
+            id: apartment.id
+        },
+        data: {
+            address: apartment.address,
+            doorNumber: apartment.doorNumber,
+            floor: apartment.floor
+        }
+    })
+}
