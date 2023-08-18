@@ -1,26 +1,23 @@
 <script setup lang="ts">
-import { toTypedSchema } from '@vee-validate/zod';
-import { useField, useForm } from 'vee-validate';
-import { loginValidationSchema } from '~/validations/user.validation';
-
-const fieldSchema = toTypedSchema(loginValidationSchema);
-const { handleSubmit, errors } = useForm({
-  validationSchema: fieldSchema,
-});
-
-const { value: email } = useField('email');
-const { value: password } = useField('password');
-const onSubmit = handleSubmit(values => {
-  console.log(values)
-});
-
+const apartmentStore = useApartmentStore();
 </script>
 <template>
-  <form @submit="onSubmit">
-    <input name="email" v-model="email" type="email" />
-    <span>{{ errors.email }}</span>
-    <input name="password" v-model="password" type="password" />
-    <span>{{ errors.password }}</span>
-    <button>Submit</button>
-  </form>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" v-if="apartmentStore.state.apartments">
+    <div
+      v-for="apartment in apartmentStore.state.apartments"
+    >
+      <ApartmentCard
+        :apartment="apartment"
+        class="apartment-card"
+      ></ApartmentCard>
+    </div>
+  </div>
 </template>
+<style>
+.apartment-card {
+  width: 275px;
+  height: 280px;
+  border-radius: 15%;
+  @apply m-10;
+}
+</style>
