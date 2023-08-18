@@ -1,33 +1,26 @@
 <script setup lang="ts">
-import { InventoryItemEnum } from "~/enums/data/inventoryItem.enum";
-import { useInventoryItemStore } from "~/composables/stores/inventory-item.store";
-import { useInventoryStore } from "~/composables/stores/inventory.store";
-import { SimpleSelectColor } from "~/enums/components/simple-select.enum";
+import { toTypedSchema } from '@vee-validate/zod';
+import { useField, useForm } from 'vee-validate';
+import { loginValidationSchema } from '~/validations/user.validation';
 
-const asd = useInventoryStore();
-const asd2 = useInventoryItemStore();
-const asd3 = useApartmentStore();
-const selectedValue = ref();
-const data = ref();
-
-const qweqw = async () => {
-  console.log(selectedValue.value);
-};
-
-onMounted(() => {
+const fieldSchema = toTypedSchema(loginValidationSchema);
+const { handleSubmit, errors } = useForm({
+  validationSchema: fieldSchema,
 });
+
+const { value: email } = useField('email');
+const { value: password } = useField('password');
+const onSubmit = handleSubmit(values => {
+  console.log(values)
+});
+
 </script>
 <template>
-  <div>
-    <button @click="qweqw">qweqweqweqw</button>
-    <SimpleSelectBox
-      v-if="data"
-      :data="data"
-      data-key="key"
-      data-value="value"
-      placeholder="Inventory Item"
-      v-model="selectedValue"
-      :color="SimpleSelectColor.Info"
-    ></SimpleSelectBox>
-  </div>
+  <form @submit="onSubmit">
+    <input name="email" v-model="email" type="email" />
+    <span>{{ errors.email }}</span>
+    <input name="password" v-model="password" type="password" />
+    <span>{{ errors.password }}</span>
+    <button>Submit</button>
+  </form>
 </template>

@@ -9,7 +9,7 @@ interface SimpleInputProps {
   size?: SimpleInputSize;
   border?: boolean;
   mask?: boolean;
-  modelValue?: string;
+  modelValue?: any;
 }
 
 const classCombine = ref();
