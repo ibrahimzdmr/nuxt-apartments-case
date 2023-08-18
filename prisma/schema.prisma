@@ -31,3 +31,9 @@ model InventoryItem {
   itemId Int
   quantity Int
 }
+
+model User {
+  id  String  @id @default(cuid())
+  email String
+  password String
+}

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { InventoryItemEnum } from "../enums/data/inventoryItem.enum";
+import { createHash } from "crypto";
 const prismaClient = new PrismaClient
 
 const seed = async () => {
@@ -204,6 +205,44 @@ const seed = async () => {
         quantity: 14
     }
   })
+
+  //User
+  await prismaClient.user.upsert({
+    where: {
+      id: "cllgt3oiu000008mm7qlce2ih"
+    },
+    update: {},
+    create: {
+      id: "cllgt3oiu000008mm7qlce2ih",
+      email: "Example1@email.com",
+      password: createHash('sha256').update("Password1").digest('hex')
+    }
+  })
+
+  await prismaClient.user.upsert({
+    where: {
+      id: "cllgt6c2a000108mm9a3d2j2i"
+    },
+    update: {},
+    create: {
+      id: "cllgt6c2a000108mm9a3d2j2i",
+      email: "Example2@email.com",
+      password: createHash('sha256').update("Password2").digest('hex')
+    }
+  })
+
+  await prismaClient.user.upsert({
+    where: {
+      id: "cllgt6ndc000208mmah5r6152"
+    },
+    update: {},
+    create: {
+      id: "cllgt6ndc000208mmah5r6152",
+      email: "Example3@email.com",
+      password: createHash('sha256').update("Password3").digest('hex')
+    }
+  })
+
 };
 
 seed()

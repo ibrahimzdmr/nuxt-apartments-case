@@ -2,7 +2,6 @@
 import { InventoryItemEnum } from "~/enums/data/inventoryItem.enum";
 import { useInventoryItemStore } from "~/composables/stores/inventory-item.store";
 import { useInventoryStore } from "~/composables/stores/inventory.store";
-import { KeyValue } from "~/models/common/key-value.interface";
 import { SimpleSelectColor } from "~/enums/components/simple-select.enum";
 
 const asd = useInventoryStore();
@@ -16,15 +15,6 @@ const qweqw = async () => {
 };
 
 onMounted(() => {
-  const z = InventoryItemEnum;
-  data.value = Object.entries(z)
-    .filter(([key, value]) => typeof value === "number")
-    .map(([value, key]) => {
-      return {
-        key,
-        value,
-      } as KeyValue;
-    });
 });
 </script>
 <template>
