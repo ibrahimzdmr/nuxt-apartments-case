@@ -34,6 +34,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vee-validate": "^4.11.1",
+    "vite-svg-loader": "^4.0.0",
     "zod": "^3.22.1"
   }
 }
