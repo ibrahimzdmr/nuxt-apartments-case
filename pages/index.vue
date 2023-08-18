@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SimpleEnumSelectBox from "~/components/SimpleEnumSelectBox.vue";
 import { InventoryItemEnum } from "~/enums/data/inventoryItem.enum";
 import { useInventoryItemStore } from "~/composables/stores/inventory-item.store";
 import { useInventoryStore } from "~/composables/stores/inventory.store";
 import { KeyValue } from "~/models/common/key-value.interface";
+import { SimpleSelectColor } from "~/enums/components/simple-select.enum";
 
 const asd = useInventoryStore();
 const asd2 = useInventoryItemStore();
@@ -37,6 +37,7 @@ onMounted(() => {
       data-value="value"
       placeholder="Inventory Item"
       v-model="selectedValue"
+      :color="SimpleSelectColor.Info"
     ></SimpleSelectBox>
   </div>
 </template>
