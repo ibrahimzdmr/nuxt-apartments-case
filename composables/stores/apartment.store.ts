@@ -1,11 +1,19 @@
-import { Apartment } from "@prisma/client";
+import { Apartment } from "~/models/apartment/apartment.interface";
 import { defineStore } from "pinia";
 
+interface ApartmentState {
+  apartments: Apartment[];
+  isLoading: boolean;
+}
+
 export const useApartmentStore = defineStore("apartment", () => {
-  const state = ref<Apartment[]>();
+  const state = reactive<ApartmentState>({
+    apartments: [],
+    isLoading: false
+  });
 
   const fillApartmentStore = async () => {
-    state.value = await fetchApartments();
+    state.apartments = await fetchApartments();
   }
 
   const fetchApartments = async () : Promise<Apartment[]> => {
