@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { InventoryItem } from "../enums/inventoryItem.enum";
+import { InventoryItemEnum } from "../enums/data/inventoryItem.enum";
 const prismaClient = new PrismaClient
 
 const seed = async () => {
@@ -108,7 +108,7 @@ const seed = async () => {
     create: {
         id: "cllfl488t000208mkdzt09l01",
         inventoryId: "cllfkyngq000008mk80wug77u",
-        itemId: InventoryItem.Bed,
+        itemId: InventoryItemEnum.Bed,
         quantity: 5
     }
   })
@@ -121,7 +121,7 @@ const seed = async () => {
     create: {
         id: "cllfledm3000008ifbsxd8o8t",
         inventoryId: "cllfkyngq000008mk80wug77u",
-        itemId: InventoryItem.Refrigerator,
+        itemId: InventoryItemEnum.Refrigerator,
         quantity: 2
     }
   })
@@ -134,7 +134,7 @@ const seed = async () => {
     create: {
         id: "cllflg42w000108if87dj50dm",
         inventoryId: "cllfkyngq000008mk80wug77u",
-        itemId: InventoryItem.Television,
+        itemId: InventoryItemEnum.Television,
         quantity: 1
     }
   })
@@ -147,7 +147,7 @@ const seed = async () => {
     create: {
         id: "cllflis9e000208ifa7cw8v8j",
         inventoryId: "cllfkyngq000008mk80wug77u",
-        itemId: InventoryItem.Sofa,
+        itemId: InventoryItemEnum.Sofa,
         quantity: 10
     }
   })
@@ -161,7 +161,7 @@ const seed = async () => {
     create: {
         id: "cllfll6on000308if1tq73jcg",
         inventoryId: "cllfkzpce000108mkd7w36vau",
-        itemId: InventoryItem.Toaster,
+        itemId: InventoryItemEnum.Toaster,
         quantity: 1
     }
   })
@@ -174,7 +174,7 @@ const seed = async () => {
     create: {
         id: "cllfllocm000408if2gci1s7v",
         inventoryId: "cllfkzpce000108mkd7w36vau",
-        itemId: InventoryItem["Dining Table"],
+        itemId: InventoryItemEnum["Dining Table"],
         quantity: 3
     }
   })
@@ -187,7 +187,7 @@ const seed = async () => {
     create: {
         id: "cllflnmnr000508if5x820xiy",
         inventoryId: "cllfkzpce000108mkd7w36vau",
-        itemId: InventoryItem["Washing Machine"],
+        itemId: InventoryItemEnum["Washing Machine"],
         quantity: 4
     }
   })
@@ -200,7 +200,7 @@ const seed = async () => {
     create: {
         id: "cllflp9f2000608if7s4t789m",
         inventoryId: "cllfkzpce000108mkd7w36vau",
-        itemId: InventoryItem.Microwave,
+        itemId: InventoryItemEnum.Microwave,
         quantity: 14
     }
   })

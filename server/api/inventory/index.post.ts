@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   try {
     const validData = inventoryArrayValidationSchema.parse(body);
     await insertInventory(validData);
-    return "Completed";
+    return validData;
   } catch (error) {
     throw createError("invalid data");
   }

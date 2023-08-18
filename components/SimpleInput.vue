@@ -12,6 +12,8 @@ interface SimpleInputProps {
   modelValue?: string;
 }
 
+const classCombine = ref();
+
 const props = withDefaults(defineProps<SimpleInputProps>(), {
   border: false,
   size: SimpleInputSize.Normal,
@@ -32,8 +34,6 @@ const value = computed({
         emit('update:modelValue', value)
   }
 })
-
-const classCombine = ref();
 
 onMounted(() => {
   const border = props.border ? "input-bordered" : "";

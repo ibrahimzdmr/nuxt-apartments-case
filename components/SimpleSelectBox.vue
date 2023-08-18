@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { SimpleSelectColor, SimpleSelectSize } from "~/enums/components/simple-select.enum";
-import { EnumType } from "typescript";
 
 interface SimpleSelectBoxProps {
   data: any[];
   dataKey: string;
   dataValue: string;
-  modelValue?: string;
-  enum?: EnumType;
   placeholder: string;
+  modelValue?: string;
   size?: SimpleSelectSize;
   color?: SimpleSelectColor;
 }

@@ -1,4 +1,4 @@
-export enum InventoryItem {
+export enum InventoryItemEnum {
     "Sofa" = 1,
     "Dining Table" = 2,
     "Television" = 3,
