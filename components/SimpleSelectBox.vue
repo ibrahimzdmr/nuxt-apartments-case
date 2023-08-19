@@ -51,6 +51,7 @@ onMounted(() => {
     @change="valueChanged($event)"
     :placeholder="placeholder"
   >
+    <option disabled selected>Select</option>
     <option v-for="item in data">
       {{ item[dataValue] }}
     </option>

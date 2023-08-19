@@ -22,6 +22,7 @@ onMounted(async () => {
 onUnmounted(() => {
   searchShow.value = true;
 })
+
 </script>
 <template>
   <div v-if="apartment">
