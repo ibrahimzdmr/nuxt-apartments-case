@@ -2,10 +2,11 @@
 const apartmentStore = useApartmentStore();
 </script>
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" v-if="apartmentStore.state.apartments">
-    <div
-      v-for="apartment in apartmentStore.state.apartments"
-    >
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+    v-if="apartmentStore.state.apartments"
+  >
+    <div v-for="apartment in apartmentStore.state.apartments">
       <ApartmentCard
         :apartment="apartment"
         class="apartment-card"

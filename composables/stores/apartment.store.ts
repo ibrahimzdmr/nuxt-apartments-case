@@ -25,9 +25,24 @@ export const useApartmentStore = defineStore("apartment", () => {
     return data.value;
   }
 
+  const getApartment = async (apartmentId: string): Promise<Apartment> => {
+    if (!state.apartments) {
+      await fillApartmentStore();
+    }
+
+    const data = state.apartments.find(i => i.id === apartmentId);
+
+    if (!data) {
+      throw createError("Couldn't find Apartment");
+    }
+
+    return data;
+  }
+
   fillApartmentStore();
   return {
     state,
     fetchApartments,
+    getApartment
   }
 });
