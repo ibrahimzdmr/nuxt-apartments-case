@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { InventoryItemEnum } from "../enums/data/inventoryItem.enum";
-import { createHash } from "crypto";
 const prismaClient = new PrismaClient
 
 const seed = async () => {

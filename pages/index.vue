@@ -14,7 +14,7 @@ const apartmentStore = useApartmentStore();
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 .apartment-card {
   width: 275px;
   height: 280px;

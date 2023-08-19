@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { useLoadingState } from '~/composables/states/loading.state';
-
+import { useLoadingState } from "~/composables/states/loading.state";
 
 const loadingState = useLoadingState();
-
 </script>
 <template>
-  <div v-if="loadingState"
+  <div
+    v-if="loadingState"
     class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-300 opacity-75 flex flex-col items-center justify-center"
   >
     <p class="loading loading-spinner loading-lg center text-center"></p>

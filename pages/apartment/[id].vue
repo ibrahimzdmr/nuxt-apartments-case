@@ -1,18 +1,23 @@
 <script setup lang="ts">
+import { Apartment } from "~/models/apartment/apartment.interface";
+
 const { id } = useRoute().params;
 const apartmentStore = useApartmentStore();
 
-const apartment = ref();
+const apartment = ref<Apartment>();
 const loading = useLoadingState();
 
-onMounted(() => {
+onMounted(async () => {
   loading.value = true;
   if (Array.isArray(id)) {
     return;
   }
-  apartment.value = apartmentStore.getApartment(id);
+  apartment.value = await apartmentStore.getApartment(id);
   loading.value = false;
 });
 </script>
 <template>
+  <div v-if="apartment">
+    <img :src="apartment.photo" alt="image" />
+  </div>
 </template>

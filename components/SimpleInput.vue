@@ -10,6 +10,7 @@ interface SimpleInputProps {
   border?: boolean;
   mask?: boolean;
   modelValue?: any;
+  placeholder?: string;
 }
 
 const classCombine = ref();
@@ -18,22 +19,22 @@ const props = withDefaults(defineProps<SimpleInputProps>(), {
   border: false,
   size: SimpleInputSize.Normal,
   color: SimpleInputColor.Default,
-  mask: false
+  mask: false,
 });
 
 const emit = defineEmits<{
   (event: "update:modelValue", value: string): void;
+  (event: "change", value: string): void;
 }>();
 
 const value = computed({
   get() {
-    return props.modelValue
+    return props.modelValue;
   },
   set(value) {
-    if (value) 
-        emit('update:modelValue', value)
-  }
-})
+    if (value) emit("update:modelValue", value);
+  },
+});
 
 onMounted(() => {
   const border = props.border ? "input-bordered" : "";
@@ -42,5 +43,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <input :type="props.mask ? 'password' : 'text'" v-bind:class="classCombine" v-model="value" />
+  <input
+    :type="props.mask ? 'password' : 'text'"
+    v-bind:class="classCombine"
+    v-model="value"
+    :placeholder="placeholder"
+    @keydown="emit('change', value)"
+  />
 </template>
