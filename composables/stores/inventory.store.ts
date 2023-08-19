@@ -27,9 +27,23 @@ export const useInventoryStore = defineStore("inventory", () => {
     return data.value;
   }
 
+  const createInventory = async (apartmentId: string): Promise<Inventory> => {
+    const { data, error } = await useFetch<Inventory>('/api/inventory', {
+      method: 'POST',
+      body: [{ apartmentId: apartmentId } as Inventory]
+    });
+
+    if (error.value || !data.value)
+      throw createError("Couldn't create a inventory");
+
+    await fillInventoryStore();
+    return data.value
+  }
+
   fillInventoryStore();
   return {
     state,
     fetchInventories,
+    createInventory
   }
 });

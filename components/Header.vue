@@ -6,7 +6,7 @@ const searchShowState = useSearchShowState();
 
 </script>
 <template>
-  <div class="navbar bg-secondary flex justify-between">
+  <div class="navbar bg-accent flex justify-between">
     <a class="btn btn-ghost normal-case text-xl" @click="navigateTo('/')">Rently</a>
     <div class="gap-5" v-if="searchShowState">
         <SimpleInput v-model="searchState" placeholder="Search"></SimpleInput>
