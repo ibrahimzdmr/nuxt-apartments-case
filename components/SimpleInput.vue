@@ -24,7 +24,6 @@ const props = withDefaults(defineProps<SimpleInputProps>(), {
 
 const emit = defineEmits<{
   (event: "update:modelValue", value: string): void;
-  (event: "change", value: string): void;
 }>();
 
 const value = computed({
@@ -32,7 +31,7 @@ const value = computed({
     return props.modelValue;
   },
   set(value) {
-    if (value) emit("update:modelValue", value);
+    emit("update:modelValue", value);
   },
 });
 
@@ -48,6 +47,5 @@ onMounted(() => {
     v-bind:class="classCombine"
     v-model="value"
     :placeholder="placeholder"
-    @keydown="emit('change', value)"
   />
 </template>

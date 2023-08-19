@@ -1,12 +1,27 @@
 <script setup lang="ts">
 const apartmentStore = useApartmentStore();
+const searchState = useSearchState();
+const loading = useLoadingState();
+
+const apartments = ref(apartmentStore.state.apartments);
+loading.value = true;
+
+watch(searchState, value => {
+  apartments.value = apartmentStore.state.apartments.filter(i => i.address.includes(value))
+  loading.value = false;
+})
+
+onMounted(() => {
+  loading.value = false;
+})
+
 </script>
 <template>
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
-    v-if="apartmentStore.state.apartments"
+    v-if="!loading"
   >
-    <div v-for="apartment in apartmentStore.state.apartments">
+    <div v-for="apartment in apartments">
       <ApartmentCard
         :apartment="apartment"
         class="apartment-card"

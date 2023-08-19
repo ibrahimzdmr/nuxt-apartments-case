@@ -7,6 +7,8 @@ const apartmentStore = useApartmentStore();
 const apartment = ref<Apartment>();
 const loading = useLoadingState();
 
+const searchShow = useSearchShowState();
+
 onMounted(async () => {
   loading.value = true;
   if (Array.isArray(id)) {
@@ -14,7 +16,12 @@ onMounted(async () => {
   }
   apartment.value = await apartmentStore.getApartment(id);
   loading.value = false;
+  searchShow.value = false;
 });
+
+onUnmounted(() => {
+  searchShow.value = true;
+})
 </script>
 <template>
   <div v-if="apartment">
