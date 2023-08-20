@@ -11,6 +11,7 @@ interface NumberSelectBoxProps {
   placeholder: string;
   size?: SimpleSelectSize;
   color?: SimpleSelectColor;
+  disabled?: boolean;
 }
 
 const props = defineProps<NumberSelectBoxProps>();
@@ -33,5 +34,6 @@ for (let index = props.from; index <= props.to; index++) {
     :placeholder="placeholder"
     :color="color"
     :size="size"
+    :disabled="disabled"
   ></SimpleSelectBox>
 </template>

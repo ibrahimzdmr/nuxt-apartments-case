@@ -12,6 +12,7 @@ interface SimpleSelectBoxProps {
   modelValue?: any;
   size?: SimpleSelectSize;
   color?: SimpleSelectColor;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<SimpleSelectBoxProps>(), {
@@ -19,6 +20,7 @@ const props = withDefaults(defineProps<SimpleSelectBoxProps>(), {
   size: SimpleSelectSize.Normal,
 });
 const classCombine = ref();
+const defaultValue = ref("Select");
 
 const emit = defineEmits<{
   (event: "update:modelValue", value: any): void;
@@ -43,6 +45,10 @@ const valueChanged = (selectedValue: any) => {
 
 onMounted(() => {
   classCombine.value = `select ${props.size} ${props.color}`;
+  if (props.modelValue) {
+    defaultValue.value = props.data.find(i => i[props.dataKey] == props.modelValue)[props.dataValue];
+  }
+
 });
 </script>
 <template>
@@ -50,6 +56,8 @@ onMounted(() => {
     :class="classCombine"
     @change="valueChanged($event)"
     :placeholder="placeholder"
+    :disabled="disabled"
+    :value="defaultValue"
   >
     <option disabled selected>Select</option>
     <option v-for="item in data">

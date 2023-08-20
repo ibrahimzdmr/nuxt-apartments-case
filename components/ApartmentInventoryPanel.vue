@@ -42,7 +42,6 @@ onMounted(() => {
   >
   <ApartmentInventoryList
     v-if="inventoryId"
-    class="w-full mt-5"
     :inventory-id="inventoryId"
   ></ApartmentInventoryList>
 </template>

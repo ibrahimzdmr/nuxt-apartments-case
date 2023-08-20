@@ -4,7 +4,21 @@ interface ApartmentInventoryListProps {
 }
 const props = defineProps<ApartmentInventoryListProps>();
 
+const inventoryItemStore = useInventoryItemStore();
+const muzaffer = ref(
+  inventoryItemStore.state.inventoryItems.filter(
+    (i) => i.inventoryId === props.inventoryId
+  )
+);
 </script>
 <template>
-  <ApartmentInventoryListItem :inventory-id="props.inventoryId"></ApartmentInventoryListItem>
+  <ApartmentInventoryListItem
+    :inventory-id="props.inventoryId"
+  ></ApartmentInventoryListItem>
+  <ApartmentInventoryListItem
+    v-if="muzaffer"
+    v-for="inventoryItem in muzaffer"
+    :inventory-id="props.inventoryId"
+    :inventory-item="inventoryItem"
+  ></ApartmentInventoryListItem>
 </template>

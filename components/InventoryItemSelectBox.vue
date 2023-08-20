@@ -6,6 +6,7 @@ interface InventoryItemSelectBoxProps {
   modelValue?: any;
   size?: SimpleSelectSize;
   color?: SimpleSelectColor;
+  disabled?: boolean;
 }
 
 const props = defineProps<InventoryItemSelectBoxProps>();
@@ -37,5 +38,6 @@ const data = Object.entries(InventoryItemEnum).filter(([key, value]) => isNaN(Nu
     v-model="value"
     :color="color"
     :size="size"
+    :disabled="disabled"
   ></SimpleSelectBox>
 </template>

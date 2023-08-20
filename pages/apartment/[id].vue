@@ -3,7 +3,8 @@ import { Apartment } from "~/models/apartment/apartment.interface";
 
 const { id } = useRoute().params;
 const apartmentStore = useApartmentStore();
-const inventoryStore = useInventoryStore();
+useInventoryStore();
+useInventoryItemStore();
 
 const apartment = ref<Apartment>();
 const loading = useLoadingState();
@@ -25,7 +26,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <div class="flex items-center justify-center mt-5">
+  <div class="flex items-center justify-center mt-5 mb-10">
     <div v-if="apartment" class="md:w-5/12 sm:w-full">
       <img :src="apartment.photo" alt="image" class="" />
       <ApartmentInventoryPanel :apartment-id="apartment.id"></ApartmentInventoryPanel>
