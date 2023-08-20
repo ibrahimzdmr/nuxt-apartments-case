@@ -6,26 +6,26 @@ const loading = useLoadingState();
 const apartments = ref(apartmentStore.state.apartments);
 loading.value = true;
 
-watch(searchState, value => {
-  apartments.value = apartmentStore.state.apartments.filter(i => i.address.includes(value))
+watch(searchState, (value) => {
+  apartments.value = apartmentStore.state.apartments.filter((i) =>
+    i.address.includes(value)
+  );
   loading.value = false;
-})
+});
 
 onMounted(() => {
   loading.value = false;
-})
-
+});
 </script>
 <template>
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
-    v-if="!loading"
-  >
-    <div v-for="apartment in apartments">
-      <ApartmentCard
-        :apartment="apartment"
-        class="apartment-card"
-      ></ApartmentCard>
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-wrap" v-if="!loading">
+      <div v-for="apartment in apartments">
+        <ApartmentCard
+          :apartment="apartment"
+          class="apartment-card"
+        ></ApartmentCard>
+      </div>
     </div>
   </div>
 </template>

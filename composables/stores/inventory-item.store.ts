@@ -31,5 +31,6 @@ export const useInventoryItemStore = defineStore("inventoryItem", () => {
   return {
     state,
     fetchInventoryItems,
+    fillInventoryItemStore
   }
 });

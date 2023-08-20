@@ -8,6 +8,7 @@ interface SimpleButtonProps {
   color?: SimpleButtonColor;
   size?: SimpleButtonSize;
   outline?: boolean;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<SimpleButtonProps>(), {
@@ -29,7 +30,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button :class="classCombine" @click="emit('click')">
+  <button :class="classCombine" @click="emit('click')" :disabled="disabled">
     <slot></slot>
   </button>
 </template>

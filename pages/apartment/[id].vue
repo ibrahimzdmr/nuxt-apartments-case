@@ -28,7 +28,7 @@ onUnmounted(() => {
 <template>
   <div class="flex items-center justify-center mt-5 mb-10">
     <div v-if="apartment" class="md:w-5/12 sm:w-full">
-      <img :src="apartment.photo" alt="image" class="" />
+      <img :src="apartment.photo" alt="image" style="border-radius: 15%;" />
       <ApartmentInventoryPanel :apartment-id="apartment.id"></ApartmentInventoryPanel>
     </div>
   </div>

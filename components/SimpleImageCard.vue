@@ -18,12 +18,14 @@ const mouseOver = ref(false);
     <figure>
       <img :src="mouseOver ? cover : props.image" alt="image" />
     </figure>
+    <Transition mode="in-out">
     <div class="card-body items-center text-center" v-if="mouseOver">
       <div class="card-title">
         <slot name="header"></slot>
       </div>
       <slot name="body"></slot>
     </div>
+  </Transition>
   </div>
 </template>
 
