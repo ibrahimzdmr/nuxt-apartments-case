@@ -5,9 +5,9 @@ export default defineEventHandler(async (event) => {
   if (event.method !== "POST") return;
   const body = await readBody(event);
   try {
-    const validData = inventoryItemArrayValidationSchema.parse(body);
-    await insertInventoryItem(validData);
-    return "Completed";
+    inventoryItemArrayValidationSchema.parse(body);
+    await insertInventoryItem(body);
+    return true;
   } catch (error) {
     throw createError("invalid data");
   }

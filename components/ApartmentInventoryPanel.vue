@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { SimpleButtonColor } from "~/enums/components/simple-button.enum";
 
-interface ApartmentInventoryListProps {
+interface ApartmentInventoryPanelProps {
   apartmentId: string;
 }
 
-const props = defineProps<ApartmentInventoryListProps>();
+const props = defineProps<ApartmentInventoryPanelProps>();
 
 const inventoryStore = useInventoryStore();
 const loading = useLoadingState();
 
-const isInventoryExists = ref(false);
+const inventoryId = ref();
 
 const createInventory = async () => {
   loading.value = true;
@@ -24,7 +24,7 @@ const inventoryControl = () => {
     (item) => item.apartmentId === props.apartmentId
   );
   if (inventory) {
-    isInventoryExists.value = true;
+    inventoryId.value = inventory.id;
   }
 };
 
@@ -36,8 +36,13 @@ onMounted(() => {
   <SimpleButton
     class="w-full mt-5"
     :color="SimpleButtonColor.Accent"
-    v-if="!isInventoryExists"
+    v-if="!inventoryId"
     @click="createInventory"
     >Create Inventory</SimpleButton
   >
+  <ApartmentInventoryList
+    v-if="inventoryId"
+    class="w-full mt-5"
+    :inventory-id="inventoryId"
+  ></ApartmentInventoryList>
 </template>

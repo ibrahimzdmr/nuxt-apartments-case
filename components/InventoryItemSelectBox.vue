@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { SimpleSelectSize, SimpleSelectColor } from "~/enums/components/simple-select.enum";
 import { InventoryItemEnum } from "~/enums/data/inventoryItem.enum";
 
 interface InventoryItemSelectBoxProps {
   modelValue?: any;
+  size?: SimpleSelectSize;
+  color?: SimpleSelectColor;
 }
 
 const props = defineProps<InventoryItemSelectBoxProps>();
@@ -32,5 +35,7 @@ const data = Object.entries(InventoryItemEnum).filter(([key, value]) => isNaN(Nu
     data-key="key"
     data-value="value"
     v-model="value"
+    :color="color"
+    :size="size"
   ></SimpleSelectBox>
 </template>
