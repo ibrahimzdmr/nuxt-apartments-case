@@ -29,13 +29,6 @@ const error = reactive({
 const previewDisable = ref(true);
 const previewShow = ref(false);
 
-/*const refresh = async () => {
-  loading.value = true;
-  previewDisable.value = false;
-  await inventoryItemStore.fillInventoryItemStore();
-  inventoryItems.value = getFilteredInventoryItems();
-  loading.value = false;
-};*/
 const add = async (value: InventoryItem) => {
   loading.value = true;
   const currentItem = currentItems.value.find((i) => i.itemId == value.itemId);
@@ -107,9 +100,10 @@ const preview = () => {
     >Preview</SimpleButton
   >
   <ApartmentInventoryPreviewModal
-  v-if="previewShow"
+    v-if="previewShow"
     :current-items="currentItems"
     :database-items="databaseItems"
     :show="previewShow"
+    @closed="() => (previewShow = false)"
   ></ApartmentInventoryPreviewModal>
 </template>

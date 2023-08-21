@@ -11,6 +11,10 @@ interface PreviewModalProps {
 
 const props = defineProps<PreviewModalProps>();
 
+const emit = defineEmits<{
+  (event: "closed"): void;
+}>();
+
 const visibility = ref(true);
 const addedItems = ref();
 const deletedItems = ref();
@@ -18,7 +22,7 @@ const loadingState = useLoadingState();
 const successState = useSuccessMessageState();
 
 const save = async () => {
-  visibility.value = false;
+  close();
   loadingState.value = true;
   await sendDeleteItemRequest();
   await sendInsertItemRequest();
@@ -27,7 +31,10 @@ const save = async () => {
   successState.value = true;
 };
 
-const cancel = () => {};
+const close = () => {
+  visibility.value = false;
+  emit('closed');
+};
 
 const delta = () => {
   //Added Items
@@ -49,24 +56,40 @@ const delta = () => {
       const databaseItem = props.databaseItems.find((i) => i.id == item.id);
       if (databaseItem) {
         const diff = item.quantity - databaseItem.quantity;
-        const sign = Math.sign(diff);
-        switch (sign) {
-          case 1:
-            addedItems.value.push({
-              id: item.id,
-              inventoryId: item.inventoryId,
-              itemId: item.itemId,
-              quantity: diff,
-            } as InventoryItem);
-            break;
-          case -1:
-            deletedItemTemp.push({
-              id: databaseItem.id,
-              inventoryId: databaseItem.inventoryId,
-              itemId: databaseItem.itemId,
-              quantity: diff * -1,
-            });
-            break;
+        const isItemChanged = item.itemId != databaseItem.itemId;
+        if (isItemChanged) {
+          addedItems.value.push({
+                id: item.id,
+                inventoryId: item.inventoryId,
+                itemId: item.itemId,
+                quantity: item.quantity,
+              } as InventoryItem);
+          deletedItemTemp.push({
+                id: databaseItem.id,
+                inventoryId: databaseItem.inventoryId,
+                itemId: databaseItem.itemId,
+                quantity: databaseItem.quantity,
+              });
+        } else {
+          const sign = Math.sign(diff);
+          switch (sign) {
+            case 1:
+              addedItems.value.push({
+                id: item.id,
+                inventoryId: item.inventoryId,
+                itemId: item.itemId,
+                quantity: diff,
+              } as InventoryItem);
+              break;
+            case -1:
+              deletedItemTemp.push({
+                id: databaseItem.id,
+                inventoryId: databaseItem.inventoryId,
+                itemId: databaseItem.itemId,
+                quantity: diff * -1,
+              });
+              break;
+          }
         }
       }
     });
@@ -173,7 +196,7 @@ delta();
         <SimpleButton :color="SimpleButtonColor.Accent" @click="save()"
           >Save</SimpleButton
         >
-        <SimpleButton @click="cancel()"> Cancel</SimpleButton>
+        <SimpleButton @click="close()"> Cancel</SimpleButton>
       </div>
     </div>
   </dialog>

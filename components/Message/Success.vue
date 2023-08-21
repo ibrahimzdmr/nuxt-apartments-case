@@ -51,6 +51,5 @@ watch(
   z-index: 50;
   position: absolute;
   width: inherit;
-  border-radius: 15%;
 }
 </style>

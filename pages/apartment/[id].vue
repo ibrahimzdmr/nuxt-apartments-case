@@ -43,7 +43,7 @@ onUnmounted(() => {
     <div v-if="apartment" class="md:w-5/12 sm:w-full">
       <MessageSuccess
         :show="success.visibility"
-        :ms="500000"
+        :ms="5000"
         @hidden="() => (success.visibility = false)"
         :text="success.text"
       ></MessageSuccess>
