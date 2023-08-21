@@ -20,7 +20,7 @@ const mouseOver = ref(false);
     </figure>
     <Transition mode="in-out">
     <div class="card-body items-center text-center">
-      <div class="card-title" :class="{ 'text-2xl font-bold' : !mouseOver}">
+      <div class="card-title" :class="{ 'text-2xl font-bold text-white' : !mouseOver}">
         <slot name="header"></slot>
       </div>
       <slot name="body"  v-if="mouseOver"></slot>
