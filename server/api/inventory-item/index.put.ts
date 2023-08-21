@@ -1,13 +1,13 @@
-import { inventoryItemValidationSchema } from "~/validations/inventory-item.validation";
+import { inventoryItemArrayValidationSchema } from "~/validations/inventory-item.validation";
 import { updateInventoryItem } from "~/database/inventory-item/inventory-item";
 
 export default defineEventHandler(async (event) => {
   if (event.method !== "PUT") return;
   const body = await readBody(event);
   try {
-  const validData = await inventoryItemValidationSchema.parseAsync(body);
-  await updateInventoryItem(validData);
-  return "Completed";
+    await inventoryItemArrayValidationSchema.parseAsync(body);
+    body.forEach(async (item: any) => await updateInventoryItem(item));
+    return "Completed";
   } catch (error) {
     throw createError("invalid data");
   }

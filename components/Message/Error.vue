@@ -15,7 +15,6 @@ const showLocal = ref(false);
 watch(
   () => props.show,
   (value) => {
-    console.log("wtf");
     if (value) {
       showLocal.value = true;
       setTimeout(() => {

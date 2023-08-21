@@ -27,6 +27,16 @@ export const deleteInventoryItem = async (inventoryItemId: string) => {
   });
 };
 
+export const deleteBulkInventoryItem = async (inventoryItemIds: string[]) => {
+  return await prismaClient.inventoryItem.deleteMany({
+    where: {
+      id: {
+        in: inventoryItemIds
+      }
+    }
+  });
+};
+
 export const updateInventoryItem = async (inventoryItem: InventoryItem) => {
   return await prismaClient.inventoryItem.update({
     where: {
@@ -39,3 +49,4 @@ export const updateInventoryItem = async (inventoryItem: InventoryItem) => {
     },
   });
 };
+

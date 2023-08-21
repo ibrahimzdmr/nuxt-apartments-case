@@ -11,6 +11,19 @@ const loading = useLoadingState();
 
 const searchShow = useSearchShowState();
 
+const success = reactive({
+  visibility: false,
+  text: "",
+});
+const successState = useSuccessMessageState();
+
+watch(successState, (value) => {
+  if (value) {
+    success.visibility = true;
+    success.text = "Inventory Saved!";
+  }
+});
+
 onMounted(async () => {
   loading.value = true;
   if (Array.isArray(id)) {
@@ -28,8 +41,16 @@ onUnmounted(() => {
 <template>
   <div class="flex items-center justify-center mt-5 mb-10">
     <div v-if="apartment" class="md:w-5/12 sm:w-full">
-      <img :src="apartment.photo" alt="image" style="border-radius: 15%;" />
-      <ApartmentInventoryPanel :apartment-id="apartment.id"></ApartmentInventoryPanel>
+      <MessageSuccess
+        :show="success.visibility"
+        :ms="500000"
+        @hidden="() => (success.visibility = false)"
+        :text="success.text"
+      ></MessageSuccess>
+      <img :src="apartment.photo" alt="image" style="border-radius: 15%" />
+      <ApartmentInventoryPanel
+        :apartment-id="apartment.id"
+      ></ApartmentInventoryPanel>
     </div>
   </div>
 </template>

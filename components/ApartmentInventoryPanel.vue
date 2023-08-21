@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useSuccessMessageState } from "~/composables/states/success-message.state";
 import { SimpleButtonColor } from "~/enums/components/simple-button.enum";
 
 interface ApartmentInventoryPanelProps {
@@ -33,6 +34,7 @@ onMounted(() => {
 });
 </script>
 <template>
+
   <SimpleButton
     class="w-full mt-5"
     :color="SimpleButtonColor.Accent"

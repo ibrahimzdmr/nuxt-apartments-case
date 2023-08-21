@@ -21,13 +21,13 @@ const getFilteredInventoryItems = () => {
 const inventoryItemStore = useInventoryItemStore();
 const loading = useLoadingState();
 const currentItems = ref(getFilteredInventoryItems());
-const databaseItems = ref(getFilteredInventoryItems());
+const databaseItems = JSON.parse(JSON.stringify(getFilteredInventoryItems()));
 const error = reactive({
   visibility: false,
   text: "",
 });
-
 const previewDisable = ref(true);
+const previewShow = ref(false);
 
 /*const refresh = async () => {
   loading.value = true;
@@ -72,8 +72,8 @@ const deleteItem = (value: number) => {
 };
 
 const preview = () => {
-  console.log(currentItems)
-}
+  previewShow.value = true;
+};
 </script>
 <template>
   <Transition mode="out-in">
@@ -106,4 +106,10 @@ const preview = () => {
     @click="preview"
     >Preview</SimpleButton
   >
+  <ApartmentInventoryPreviewModal
+  v-if="previewShow"
+    :current-items="currentItems"
+    :database-items="databaseItems"
+    :show="previewShow"
+  ></ApartmentInventoryPreviewModal>
 </template>
