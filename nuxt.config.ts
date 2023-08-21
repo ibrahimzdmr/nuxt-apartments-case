@@ -30,4 +30,7 @@ export default defineNuxtConfig({
       'pages/**'
     ]
   },
+  nitro: {
+    preset: 'node-server'
+  }
 })
