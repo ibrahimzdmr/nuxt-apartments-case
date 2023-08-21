@@ -403,3 +403,5 @@ FodyWeavers.xsd
 .nitro
 .cache
 dist
+.vercel
+env.ps1
