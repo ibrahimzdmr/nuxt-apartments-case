@@ -8,7 +8,7 @@ interface ConfirmModalProps {
   cancelText?: string;
 }
 
-const props = withDefaults(defineProps<ConfirmModalProps>(), {
+withDefaults(defineProps<ConfirmModalProps>(), {
   confirmText: "Confirm",
   cancelText: "Cancel",
   title: "Confirm!",
@@ -37,13 +37,13 @@ const confirm = () => {
     class="modal"
     :class="{ 'modal-open': confirmModalState }"
   >
-    <form method="dialog" class="modal-box">
+    <div method="dialog" class="modal-box">
       <h3 class="font-bold text-lg">{{ title }}</h3>
       <p class="py-4">{{ text }}</p>
       <div class="modal-action">
         <SimpleButton @click="confirm()">{{ confirmText }}</SimpleButton>
         <SimpleButton @click="cancel()"> {{ cancelText }}</SimpleButton>
       </div>
-    </form>
+    </div>
   </dialog>
 </template>

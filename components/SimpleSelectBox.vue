@@ -20,13 +20,13 @@ const props = withDefaults(defineProps<SimpleSelectBoxProps>(), {
   size: SimpleSelectSize.Normal,
 });
 const classCombine = ref();
-const defaultValue = ref("Select");
+const defaultValue = ref();
 
 const emit = defineEmits<{
   (event: "update:modelValue", value: any): void;
 }>();
 
-computed({
+const val = computed({
   get() {
     return props.modelValue;
   },
@@ -34,6 +34,13 @@ computed({
     if (value) emit("update:modelValue", value);
   },
 });
+
+const getValueFromText = (text: any) => {
+  return props.data.find(
+    (item) => item[props.dataValue] === text
+  )[props.dataKey];
+}
+
 
 const valueChanged = (selectedValue: any) => {
   const selectedText = selectedValue.target.value;
@@ -45,19 +52,31 @@ const valueChanged = (selectedValue: any) => {
 
 onMounted(() => {
   classCombine.value = `select ${props.size} ${props.color}`;
-  if (props.modelValue) {
-    defaultValue.value = props.data.find(i => i[props.dataKey] == props.modelValue)[props.dataValue];
-  }
-
+  if (props.modelValue)
+    defaultValue.value = props.data.find(
+      (i) => i[props.dataKey] == props.modelValue
+    )[props.dataValue];
+  else defaultValue.value = "Select";
 });
+
+watch(() => props.modelValue, value => {
+  if (!value) {
+    defaultValue.value = "Select";
+  }
+  else
+  defaultValue.value = props.data.find(
+      (i) => i[props.dataKey] == props.modelValue
+    )[props.dataValue];
+})
+
 </script>
 <template>
   <select
     :class="classCombine"
-    @change="valueChanged($event)"
     :placeholder="placeholder"
     :disabled="disabled"
-    :value="defaultValue"
+    @change="valueChanged($event)"
+    v-model="defaultValue"
   >
     <option disabled selected>Select</option>
     <option v-for="item in data">

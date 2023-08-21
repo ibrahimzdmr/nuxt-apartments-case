@@ -4,6 +4,8 @@ import {
   InventoryItemUpdateRequest,
 } from "~/models/inventory-item";
 import { SimpleButtonColor } from "~/enums/components/simple-button.enum";
+import { inventoryItemValidationSchema } from "~/validations/inventory-item.validation";
+import zod from "zod";
 
 interface ApartmentInventoryListProps {
   inventoryId: string;
@@ -20,6 +22,10 @@ const inventoryItemStore = useInventoryItemStore();
 const loading = useLoadingState();
 const currentItems = ref(getFilteredInventoryItems());
 const databaseItems = ref(getFilteredInventoryItems());
+const error = reactive({
+  visibility: false,
+  text: "",
+});
 
 const previewDisable = ref(true);
 
@@ -30,21 +36,55 @@ const previewDisable = ref(true);
   inventoryItems.value = getFilteredInventoryItems();
   loading.value = false;
 };*/
-
-const add = (value: InventoryItem) => {
-  currentItems.value.push(value);
+const add = async (value: InventoryItem) => {
+  loading.value = true;
+  const currentItem = currentItems.value.find((i) => i.itemId == value.itemId);
+  if (!currentItem) currentItems.value.push(value);
+  else {
+    try {
+      currentItem.quantity += parseInt(value.quantity.toString());
+      inventoryItemValidationSchema.parse(currentItem);
+    } catch (err: any) {
+      if (err instanceof zod.ZodError) {
+        error.visibility = true;
+        error.text = err.issues[0].message;
+      }
+      currentItem.quantity -= value.quantity;
+    }
+  }
+  previewDisable.value = false;
+  loading.value = false;
 };
 
 const update = (value: InventoryItemUpdateRequest) => {
-  currentItems.value[value.index] = value.inventoryItem;
+  loading.value = true;
+  const index = value.index;
+  currentItems.value[index] = value.inventoryItem;
+  previewDisable.value = false;
+  loading.value = false;
 };
 
 const deleteItem = (value: number) => {
-  console.log(value);
+  loading.value = true;
   currentItems.value.splice(value, 1);
+  previewDisable.value = false;
+  loading.value = false;
 };
+
+const preview = () => {
+  console.log(currentItems)
+}
 </script>
 <template>
+  <Transition mode="out-in">
+    <MessageError
+      :show="error.visibility"
+      :ms="5000"
+      @hidden="() => (error.visibility = false)"
+      :text="error.text"
+      class="mt-5"
+    ></MessageError>
+  </Transition>
   <ApartmentInventoryListItem
     :inventory-id="inventoryId"
     :index="-1"
@@ -63,6 +103,7 @@ const deleteItem = (value: number) => {
     class="w-full mt-5"
     :color="SimpleButtonColor.Secondary"
     :disabled="previewDisable"
+    @click="preview"
     >Preview</SimpleButton
   >
 </template>
