@@ -7,7 +7,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate prisma generate",
+    "generate": "nuxt generate && prisma generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
