@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { InventoryItemEnum } from "../enums/data/inventoryItem.enum";
+import { InventoryItemEnum } from "~/enums/data/inventoryItem.enum";
 const prismaClient = new PrismaClient
 
 const seed = async () => {

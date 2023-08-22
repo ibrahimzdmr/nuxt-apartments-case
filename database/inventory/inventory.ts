@@ -1,5 +1,5 @@
 import { Inventory } from "~/models/inventory/inventory.interface";
-import prismaClient from "../../prisma/prisma";
+import prismaClient from "~/prisma/prisma";
 
 export const getInventories = () => {
   return prismaClient.inventory.findMany();

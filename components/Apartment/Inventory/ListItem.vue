@@ -33,8 +33,8 @@ const add = async () => {
   const item = {
     id: "",
     inventoryId: props.inventoryId,
-    itemId: itemRef.value,
-    quantity: quantity.value,
+    itemId: parseInt(itemRef.value),
+    quantity: parseInt(quantity.value),
   } as InventoryItem;
   console.log(item);
   emit("add", item);
@@ -51,8 +51,8 @@ const update = async () => {
   const item = {
     id: props.inventoryItem?.id,
     inventoryId: props.inventoryItem?.inventoryId,
-    itemId: itemRef.value,
-    quantity: quantity.value,
+    itemId: parseInt(itemRef.value),
+    quantity: parseInt(quantity.value),
   } as InventoryItem;
 
   const updateRequest = {

@@ -1,7 +1,7 @@
 import {
   getApartment,
   getApartments,
-} from "../../../database/apartment/apartment";
+} from "~/database/apartment/apartment";
 
 export default defineEventHandler((event) => {
   if (event.method !== "GET") return;

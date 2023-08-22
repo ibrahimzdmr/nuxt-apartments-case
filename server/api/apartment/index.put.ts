@@ -1,5 +1,5 @@
 import { updateApartment } from "~/database/apartment/apartment";
-import { apartmentValidationSchema } from "../../../validations/apartment.validation";
+import { apartmentValidationSchema } from "~/validations/apartment.validation";
 
 export default defineEventHandler(async (event) => {
   if (event.method !== "PUT") return;

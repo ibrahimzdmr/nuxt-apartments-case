@@ -1,5 +1,5 @@
 import { Apartment } from "~/models/apartment/apartment.interface";
-import prismaClient from "../../prisma/prisma";
+import prismaClient from "~/prisma/prisma";
 
 export const getApartments = () => {
   return prismaClient.apartment.findMany();
