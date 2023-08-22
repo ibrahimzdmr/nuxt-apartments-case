@@ -76,19 +76,19 @@ watch(() => props.inventoryItem?.itemId, value => {
   <div
     class="grid grid-cols-3 gap-3 mt-5 shadow rounded-lg p-3"
   >
-    <InventoryItemSelectBox
+    <ApartmentInventoryItemSelectBox
       v-model="itemRef"
       :color="SimpleSelectColor.Accent"
       :disabled="!editMode"
-    ></InventoryItemSelectBox>
-    <NumberSelectBox
+    ></ApartmentInventoryItemSelectBox>
+    <CommonNumberSelectBox
       :from="1"
       :to="20"
       placeholder="Quantity"
       v-model="quantity"
       :color="SimpleSelectColor.Accent"
       :disabled="!editMode"
-    ></NumberSelectBox>
+    ></CommonNumberSelectBox>
     <SimpleButton
       v-if="index == -1"
       :color="SimpleButtonColor.Accent"

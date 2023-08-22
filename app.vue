@@ -1,9 +1,9 @@
 <script setup lang="ts">
 </script>
 <template>
-  <Header></Header>
+  <LayoutHeader></LayoutHeader>
   <div>
     <NuxtPage />
   </div>
-  <Loading></Loading>
+  <LayoutLoading></LayoutLoading>
 </template>
