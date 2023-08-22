@@ -20,7 +20,7 @@ watch(
       setTimeout(() => {
         showLocal.value = false;
         emit("hidden");
-      }, props.ms * 100);
+      }, props.ms);
     }
   }
 );
