@@ -35,13 +35,6 @@ const val = computed({
   },
 });
 
-const getValueFromText = (text: any) => {
-  return props.data.find(
-    (item) => item[props.dataValue] === text
-  )[props.dataKey];
-}
-
-
 const valueChanged = (selectedValue: any) => {
   const selectedText = selectedValue.target.value;
   const selectedItem = props.data.find(

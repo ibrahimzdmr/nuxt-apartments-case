@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import cover from "../assets/photos/black-cover.png";
+import cover from "~/assets/photos/black-cover.png";
 interface SimpleImageCardProps {
   image: string;
 }
