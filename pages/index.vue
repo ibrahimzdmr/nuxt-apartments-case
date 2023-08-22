@@ -8,7 +8,7 @@ loading.value = true;
 
 watch(searchState, (value) => {
   apartments.value = apartmentStore.state.apartments.filter((i) =>
-    i.address.includes(value)
+    i.address.toLowerCase().includes(value.toLowerCase())
   );
   loading.value = false;
 });
