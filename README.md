@@ -4,7 +4,17 @@ You can access the deployed part of the website through [this](https://nuxt-apar
 
 ## To Run Locally
 
-You need to create a Postgresql database via Vercel, then you need to fill in the necessary fields in the .env file (e.g. env image).
+You need to create a Postgresql database via Vercel, then you need to fill in the necessary fields in the .env file.
+just like this:
+```bash
+POSTGRES_URL=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_USER=""
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_DATABASE=""
+```
 
 Afterwards, you need to run the commands below one by one for the node modules and prisma.
 
@@ -22,66 +32,8 @@ For last you can use this command to run the project locally.
 yarn run dev 
 ```
 
-# Nuxt 3 Minimal Starter
+##Technologies
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+I developed the project on [Nuxt 3](https://nuxt.com/) Framework. I used [prisma](https://www.prisma.io/) for database connection and data retrieval from the database.
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+For the store structure, I used [Pinia](https://pinia.vuejs.org/ssr/nuxt.html). I also utilized [vee-validate](https://vee-validate.logaretm.com/v4/) and [zod](https://zod.dev/) for validation.

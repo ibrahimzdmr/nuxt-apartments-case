@@ -26,7 +26,6 @@
     "@prisma/client": "^5.1.1",
     "@vee-validate/zod": "^4.11.1",
     "@vercel/postgres": "^0.4.1",
-    "concurrently": "^8.2.0",
     "daisyui": "^3.5.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
