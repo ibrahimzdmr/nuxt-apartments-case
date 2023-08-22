@@ -1,3 +1,5 @@
+# Rently Web Case
+
 Hello, this project has been developed for Rently Web Case. It has been built using the Nuxt 3 framework, along with Tailwind and Daisy UI.
 
 You can access the deployed part of the website through [this](https://nuxt-apartment-case.vercel.app/) link.
@@ -32,7 +34,7 @@ For last you can use this command to run the project locally.
 yarn run dev 
 ```
 
-##Technologies
+## Technologies
 
 I developed the project on [Nuxt 3](https://nuxt.com/) Framework. I used [prisma](https://www.prisma.io/) for database connection and data retrieval from the database.
 
