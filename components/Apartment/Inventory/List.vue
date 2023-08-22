@@ -70,6 +70,7 @@ const preview = () => {
 
 const saved = () => {
   databaseItems.value = JSON.parse(JSON.stringify(currentItems.value))
+  previewDisable.value = true;
 }
 
 </script>
