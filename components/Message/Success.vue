@@ -20,7 +20,7 @@ watch(
       setTimeout(() => {
         showLocal.value = false;
         emit("hidden");
-      }, props.ms);
+      }, props.ms * 100);
     }
   }
 );
@@ -51,7 +51,7 @@ watch(
   z-index: 50;
   position: fixed;
   width: inherit;
-  top: 5;
+  top: 5px;
   @apply bg-green-600
 }
 </style>
