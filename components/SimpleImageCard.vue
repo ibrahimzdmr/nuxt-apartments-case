@@ -15,17 +15,25 @@ const mouseOver = ref(false);
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
   >
-    <figure>
-      <img :src="mouseOver ? cover : props.image" alt="image" :class="{'bg-no-repeat brightness-75' : !mouseOver}" />
-    </figure>
     <Transition mode="in-out">
+      <figure>
+        <img
+          :src="mouseOver ? cover : props.image"
+          alt="image"
+          :class="{ 'bg-no-repeat brightness-75': !mouseOver }"
+        />
+      </figure>
+    </Transition>
     <div class="card-body items-center text-center">
-      <div class="card-title" :class="{ 'text-2xl font-bold text-white' : !mouseOver}">
+      <div class="card-title text-2xl font-bold text-white">
         <slot name="header"></slot>
       </div>
-      <slot name="body"  v-if="mouseOver"></slot>
+      <Transition mode="in-out">
+        <div v-if="mouseOver">
+          <slot name="body"></slot>
+        </div>
+      </Transition>
     </div>
-  </Transition>
   </div>
 </template>
 

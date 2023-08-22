@@ -74,7 +74,7 @@ watch(() => props.inventoryItem?.itemId, value => {
 </script>
 <template>
   <div
-    class="grid grid-cols-3 gap-3 mt-5 border-b-2 border-accent p-1 shadow-md"
+    class="grid grid-cols-3 gap-3 mt-5 shadow rounded-lg p-3"
   >
     <InventoryItemSelectBox
       v-model="itemRef"

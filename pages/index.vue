@@ -23,7 +23,7 @@ onMounted(() => {
       <div v-for="apartment in apartments">
         <ApartmentCard
           :apartment="apartment"
-          class="apartment-card"
+          class="apartment-card rounded-3xl "
         ></ApartmentCard>
       </div>
     </div>
@@ -33,7 +33,6 @@ onMounted(() => {
 .apartment-card {
   width: 275px;
   height: 280px;
-  border-radius: 15%;
   @apply m-10;
 }
 </style>

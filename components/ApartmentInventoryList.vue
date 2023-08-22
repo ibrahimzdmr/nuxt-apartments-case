@@ -21,7 +21,7 @@ const getFilteredInventoryItems = () => {
 const inventoryItemStore = useInventoryItemStore();
 const loading = useLoadingState();
 const currentItems = ref(getFilteredInventoryItems());
-const databaseItems = JSON.parse(JSON.stringify(getFilteredInventoryItems()));
+const databaseItems = ref(JSON.parse(JSON.stringify(getFilteredInventoryItems())));
 const error = reactive({
   visibility: false,
   text: "",
@@ -67,6 +67,11 @@ const deleteItem = (value: number) => {
 const preview = () => {
   previewShow.value = true;
 };
+
+const saved = () => {
+  databaseItems.value = JSON.parse(JSON.stringify(currentItems.value))
+}
+
 </script>
 <template>
   <Transition mode="out-in">
@@ -78,11 +83,13 @@ const preview = () => {
       class="mt-5"
     ></MessageError>
   </Transition>
+  <p class="m-2 mt-5 text-secondary text-xl flex font-bold pl-3">New Item</p>
   <ApartmentInventoryListItem
     :inventory-id="inventoryId"
     :index="-1"
     @add="add($event)"
   ></ApartmentInventoryListItem>
+  <p class="m-2 mt-5 text-secondary text-xl flex font-bold pl-3">Current Items</p>
   <ApartmentInventoryListItem
     v-if="currentItems"
     v-for="(inventoryItem, index) in currentItems"
@@ -105,5 +112,6 @@ const preview = () => {
     :database-items="databaseItems"
     :show="previewShow"
     @closed="() => (previewShow = false)"
+    @saved="saved()"
   ></ApartmentInventoryPreviewModal>
 </template>

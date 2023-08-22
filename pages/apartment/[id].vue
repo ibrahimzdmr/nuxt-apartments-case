@@ -39,7 +39,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <div class="flex items-center justify-center mt-5 mb-10">
+  <div class="flex items-center justify-center mt-5 mb-10 mx-4 md:mx-0">
     <div v-if="apartment" class="md:w-5/12 sm:w-full">
       <MessageSuccess
         :show="success.visibility"
@@ -47,7 +47,7 @@ onUnmounted(() => {
         @hidden="() => (success.visibility = false)"
         :text="success.text"
       ></MessageSuccess>
-      <img :src="apartment.photo" alt="image" style="border-radius: 15%" />
+      <img :src="apartment.photo" alt="image" class="rounded-3xl" />
       <ApartmentInventoryPanel
         :apartment-id="apartment.id"
       ></ApartmentInventoryPanel>

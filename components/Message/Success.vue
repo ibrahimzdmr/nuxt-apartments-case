@@ -49,7 +49,9 @@ watch(
 <style scoped>
 .local-alert {
   z-index: 50;
-  position: absolute;
+  position: fixed;
   width: inherit;
+  top: 5;
+  @apply bg-green-600
 }
 </style>

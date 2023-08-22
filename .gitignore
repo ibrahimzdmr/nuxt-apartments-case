@@ -405,3 +405,4 @@ FodyWeavers.xsd
 dist
 .vercel
 env.ps1
+.env
