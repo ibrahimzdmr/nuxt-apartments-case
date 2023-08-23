@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
     await insertInventoryItem(body);
     return true;
   } catch (error) {
-    console.log(error);
     throw createError("invalid data");
   }
 });

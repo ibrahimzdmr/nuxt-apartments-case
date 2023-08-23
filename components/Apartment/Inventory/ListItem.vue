@@ -36,7 +36,6 @@ const add = async () => {
     itemId: parseInt(itemRef.value),
     quantity: parseInt(quantity.value),
   } as InventoryItem;
-  console.log(item);
   emit("add", item);
   itemRef.value = undefined;
   quantity.value = undefined;

@@ -23,12 +23,12 @@ const loadingState = useLoadingState();
 const successState = useSuccessMessageState();
 
 const save = async () => {
-  close();
-  emit("saved");
   loadingState.value = true;
   await sendDeleteItemRequest();
   await sendInsertItemRequest();
   await sendUpdateItemRequest();
+  emit("saved");
+  close();
   loadingState.value = false;
   successState.value = true;
 };

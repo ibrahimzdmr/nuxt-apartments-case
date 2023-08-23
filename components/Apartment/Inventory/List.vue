@@ -70,7 +70,9 @@ const preview = () => {
   previewShow.value = true;
 };
 
-const saved = () => {
+const saved = async () => {
+  await inventoryItemStore.fillInventoryItemStore();
+  currentItems.value = inventoryItemStore.state.inventoryItems.filter(i => i.inventoryId == props.inventoryId);
   databaseItems.value = JSON.parse(JSON.stringify(currentItems.value));
   previewDisable.value = true;
 };
@@ -116,6 +118,6 @@ const saved = () => {
       :database-items="databaseItems"
       :show="previewShow"
       @closed="() => (previewShow = false)"
-      @saved="saved()"
+      @saved="saved"
     ></ApartmentInventoryPreviewModal>
 </template>
