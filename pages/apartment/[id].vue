@@ -3,8 +3,8 @@ import { Apartment } from "~/models/apartment/apartment.interface";
 
 const { id } = useRoute().params;
 const apartmentStore = useApartmentStore();
-useInventoryStore();
-useInventoryItemStore();
+const inventoryStore = useInventoryStore();
+const inventoryItemStore = useInventoryItemStore();
 
 const apartment = ref<Apartment>();
 const loading = useLoadingState();
@@ -29,6 +29,8 @@ onMounted(async () => {
   if (Array.isArray(id)) {
     return;
   }
+  await inventoryStore.fillInventoryStore();
+  await inventoryItemStore.fillInventoryItemStore();
   apartment.value = await apartmentStore.getApartment(id);
   loading.value = false;
   searchShow.value = false;

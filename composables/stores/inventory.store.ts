@@ -44,6 +44,7 @@ export const useInventoryStore = defineStore("inventory", () => {
   return {
     state,
     fetchInventories,
+    fillInventoryStore,
     createInventory
   }
 });
